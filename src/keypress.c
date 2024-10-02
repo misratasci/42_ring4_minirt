@@ -6,7 +6,7 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 15:07:32 by emgul             #+#    #+#             */
-/*   Updated: 2024/10/02 15:24:37 by emgul            ###   ########.fr       */
+/*   Updated: 2024/10/02 17:14:26 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,6 @@
 int	handle_keypress(int key, t_minirt *minirt)
 {
     if (key == XK_Escape)
-        ft_exit(NULL, 0);
+        ft_exit(NULL, 0, minirt);
 	return (0);
 }

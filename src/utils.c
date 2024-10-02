@@ -6,12 +6,17 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 15:00:22 by emgul             #+#    #+#             */
-/*   Updated: 2024/10/02 15:05:36 by emgul            ###   ########.fr       */
+/*   Updated: 2024/10/02 17:40:45 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 #include "mlx.h"
+
+int is_whitespace(char c)
+{
+    return ((c >= 8 && c <= 13) || c == ' ');
+}
 
 void	fill_image(int size_x, int size_y, t_img *img, t_minirt minirt)
 {
@@ -39,5 +44,20 @@ void	fill_image(int size_x, int size_y, t_img *img, t_minirt minirt)
 void	draw(t_minirt *minirt)
 {
 	fill_image(minirt->win_width, minirt->win_height, &(minirt->img), *minirt);
-	mlx_put_image_to_window(minirt->mlx, minirt->mlx_win, minirt->img.ptr, 0, 0);
+	mlx_put_image_to_window(minirt->mlx, minirt->win, minirt->img.ptr, 0, 0);
+}
+
+int	higher_len(char *str1, char *str2)
+{
+	int	len1;
+	int	len2;
+
+	if (!str1 || !str2)
+		return (-1);
+	len1 = ft_strlen(str1);
+	len2 = ft_strlen(str2);
+	if (len1 > len2)
+		return (len1);
+	else
+		return (len2);
 }

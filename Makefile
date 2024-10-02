@@ -1,9 +1,9 @@
 
-FILES		= main init utils keypress
+FILES		= main init utils keypress parse
 
 NAME		= minirt
 CC			= gcc
-CCFLAGS		= -I ./lib/libft/inc/ -I ./inc/ -I ./lib/minilibx -lXext -lX11 -lm -lbsd#-Wall -Wextra -Werror
+CCFLAGS		= -I ./lib/libft/inc/ -I ./inc/ -I ./lib/minilibx -lXext -lX11 -lm -lbsd #-Wall -Wextra -Werror
 MAKEFLAGS	= --no-print-directory
 RM			= rm -rf
 
