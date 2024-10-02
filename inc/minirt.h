@@ -6,7 +6,7 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 14:02:00 by emgul             #+#    #+#             */
-/*   Updated: 2024/10/02 14:57:18 by emgul            ###   ########.fr       */
+/*   Updated: 2024/10/02 15:23:53 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef struct s_img
 typedef struct s_minirt
 {
 	void *mlx;
-	void *mlx_win;
+	void *win;
 	int win_width;
 	int win_height;
 	t_img img;
@@ -55,5 +55,7 @@ typedef struct s_minirt
 
 t_minirt *init_minirt();
 int ft_exit(char *err, int exit_code);
+void	draw(t_minirt *minirt);
+int	handle_keypress(int key, t_minirt *minirt);
 
 #endif

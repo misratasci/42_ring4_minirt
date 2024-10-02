@@ -1,5 +1,5 @@
 
-FILES		= main init
+FILES		= main init utils keypress
 
 NAME		= minirt
 CC			= gcc
