@@ -6,7 +6,7 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 14:02:00 by emgul             #+#    #+#             */
-/*   Updated: 2024/10/03 14:39:27 by emgul            ###   ########.fr       */
+/*   Updated: 2024/10/03 14:45:20 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,6 @@ int parse_line(char *line, t_scene *scene);
 int	create_rgb(int red, int green, int blue);
 int	parse_color(char *str);
 float ft_atof(const char *str);
+t_vector *init_vector(char *str);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 14:25:11 by emgul             #+#    #+#             */
-/*   Updated: 2024/10/03 14:40:06 by emgul            ###   ########.fr       */
+/*   Updated: 2024/10/03 14:44:24 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,19 @@ t_amb_light	*init_amb_light(char **arr)
     return (amb_light);
 }
 
+t_camera	*init_camera(char **arr)
+{
+	t_camera *camera;
+	
+    camera = (t_camera *)ft_calloc(sizeof(t_camera), 1);
+    if (!camera)
+        return (NULL);
+    camera->pos = init_vector(arr[1]);
+    camera->orientation = init_vector(arr[2]);
+	camera->fov = ft_atoi(arr[3]);
+    return (camera);
+}
+
 int parse_line(char *line, t_scene *scene)
 {
     char **split;
@@ -35,4 +48,6 @@ int parse_line(char *line, t_scene *scene)
     split = ft_split_charset(line, " \t");
     if (strs_equal(split[0], "A"))
         scene->amb_light = init_amb_light(split);
+	if (strs_equal(split[0], "C"))
+        scene->camera = init_camera(split);
 }

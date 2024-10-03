@@ -6,7 +6,7 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 14:08:54 by emgul             #+#    #+#             */
-/*   Updated: 2024/10/02 17:14:30 by emgul            ###   ########.fr       */
+/*   Updated: 2024/10/03 14:46:07 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 
 typedef struct s_camera
 {
-	t_vector	pos;
-	t_vector	orientation;
+	t_vector	*pos;
+	t_vector	*orientation;
 	int			fov;
 }	t_camera;
 
@@ -37,27 +37,27 @@ typedef struct s_amb_light
 
 typedef struct s_light
 {
-	t_vector pos;
+	t_vector *pos;
 	float intensity;
 }	t_light;
 
 typedef struct s_sphere
 {
-	t_vector	origin;
+	t_vector	*origin;
 	int			radius;
 	int			color;
 }				t_sphere;
 
 typedef struct s_plane
 {
-	t_vector	normal;
+	t_vector	*normal;
 	int			color;
 
 }				t_plane;
 
 typedef struct s_cylinder
 {
-	t_vector	origin;
+	t_vector	*origin;
 	int			radius;
 	int			height;
 	int			color;

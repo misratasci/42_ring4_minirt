@@ -6,13 +6,29 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 14:33:30 by emgul             #+#    #+#             */
-/*   Updated: 2024/10/02 17:14:27 by emgul            ###   ########.fr       */
+/*   Updated: 2024/10/03 14:45:13 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 #include "mlx.h"
 #include "libft.h"
+
+t_vector *init_vector(char *str)
+{
+	char **split;
+    t_vector *v;
+
+    v = (t_vector *)ft_calloc(sizeof(t_vector), 1);
+    if (!v)
+        return (NULL);
+	split = ft_split(str, ',');
+	v->x = ft_atof(split[0]);
+    v->y = ft_atof(split[1]);
+    v->z = ft_atof(split[2]);
+	free_array(split);
+	return (v);
+}
 
 t_scene *init_scene()
 {
