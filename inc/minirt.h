@@ -6,7 +6,7 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 14:02:00 by emgul             #+#    #+#             */
-/*   Updated: 2024/10/03 15:12:15 by emgul            ###   ########.fr       */
+/*   Updated: 2024/10/03 16:19:46 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,12 @@ typedef struct s_vector
 	float y;
 	float z;
 }	t_vector;
+
+typedef struct s_ray
+{
+	t_vector	*origin;
+	t_vector	*direction;
+} t_ray;
 
 # include "scene.h"
 
@@ -72,7 +78,22 @@ int parse_line(char *line, t_scene *scene);
 int	create_rgb(int red, int green, int blue);
 int	parse_color(char *str);
 float ft_atof(const char *str);
-t_vector *init_vector(char *str);
+t_vector *init_vector_str(char *str);
+t_vector *init_vector(float x, float y, float z);
 void fill_scene(t_minirt *minirt, t_input *input);
 
+//init_objs
+t_light	*init_light(char **arr);
+t_plane	*init_plane(char **arr);
+t_sphere	*init_sphere(char **arr);
+t_cylinder	*init_cylinder(char **arr);
+t_ray *init_ray(t_vector o, t_vector d);
+
+
+//math
+int	dot_product(t_vector v, t_vector u);
+t_vector *cross_product(t_vector v, t_vector u);
+t_vector *sum_vector(t_vector v, t_vector u);
+t_vector	*scale_vector(t_vector v, float s);
+t_vector	*get_point_on_ray(t_ray ray, float t);
 #endif

@@ -6,7 +6,7 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 14:33:30 by emgul             #+#    #+#             */
-/*   Updated: 2024/10/03 15:06:29 by emgul            ###   ########.fr       */
+/*   Updated: 2024/10/03 16:19:05 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "mlx.h"
 #include "libft.h"
 
-t_vector *init_vector(char *str)
+t_vector *init_vector_str(char *str)
 {
 	char **split;
     t_vector *v;
@@ -28,6 +28,31 @@ t_vector *init_vector(char *str)
     v->z = ft_atof(split[2]);
 	free_array(split);
 	return (v);
+}
+
+t_vector *init_vector(float x, float y, float z)
+{
+    t_vector *v;
+
+    v = (t_vector *)ft_calloc(sizeof(t_vector), 1);
+    if (!v)
+        return (NULL);
+	v->x = x;
+    v->y = y;
+    v->z = z;
+	return (v);
+}
+
+t_ray *init_ray(t_vector o, t_vector d)
+{
+    t_ray *ray;
+
+    ray = (t_ray *)ft_calloc(sizeof(t_ray), 1);
+    if (!ray)
+        return (NULL);
+    ray->origin = init_vector(o.x, o.y, o.z);
+    ray->direction = init_vector(d.x, d.y, d.z);
+    return (ray);
 }
 
 t_scene *init_scene()
