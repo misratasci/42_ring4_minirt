@@ -6,7 +6,7 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 12:57:22 by emgul             #+#    #+#             */
-/*   Updated: 2024/10/03 14:12:01 by emgul            ###   ########.fr       */
+/*   Updated: 2024/10/03 14:23:33 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,35 +19,35 @@
 
 static int	object_valid(char *str)
 {
-	if (ft_strncmp(str, "A", higher_len(str, "A")) == 0)
+	if (strs_equal(str, "A"))
 		return (1);
-	if (ft_strncmp(str, "C", higher_len(str, "C")) == 0)
+	if (strs_equal(str, "C"))
 		return (1);
-	if (ft_strncmp(str, "L", higher_len(str, "L")) == 0)
+	if (strs_equal(str, "L"))
 		return (1);
-	if (ft_strncmp(str, "sp", higher_len(str, "sp")) == 0)
+	if (strs_equal(str, "sp"))
 		return (1);
-	if (ft_strncmp(str, "cy", higher_len(str, "cy")) == 0)
+	if (strs_equal(str, "cy"))
 		return (1);
-	if (ft_strncmp(str, "pl", higher_len(str, "pl")) == 0)
+	if (strs_equal(str, "pl"))
 		return (1);
 	return (0);
 }
 
 static int arg_count_valid(char **arr)
 {
-    if (ft_strncmp(arr[0], "A", higher_len(arr[0], "A")) == 0)
+    if (strs_equal(arr[0], "A"))
 		return (count_elements(arr) == 3);
-	if (ft_strncmp(arr[0], "C", higher_len(arr[0], "C")) == 0)
+	if (strs_equal(arr[0], "C"))
 		return (count_elements(arr) == 4);
-	if (ft_strncmp(arr[0], "L", higher_len(arr[0], "L")) == 0)
+	if (strs_equal(arr[0], "L"))
 		return (count_elements(arr) == 4);
-	if (ft_strncmp(arr[0], "sp", higher_len(arr[0], "sp")) == 0)
+	if (strs_equal(arr[0], "sp"))
 		return (count_elements(arr) == 4);
-	if (ft_strncmp(arr[0], "cy", higher_len(arr[0], "cy")) == 0)
+	if (strs_equal(arr[0], "pl"))
+		return (count_elements(arr) == 4);
+	if (strs_equal(arr[0], "cy"))
 		return (count_elements(arr) == 6);
-	if (ft_strncmp(arr[0], "pl", higher_len(arr[0], "pl")) == 0)
-		return (count_elements(arr) == 4);
     return (0);
 }
 static int consecutive_chars(char x, char y)
@@ -89,13 +89,11 @@ static int color_valid(char **arr)
     char **split;
     int i;
 
-    if (ft_strncmp(arr[0], "A", higher_len(arr[0], "A")) == 0)
+    if (strs_equal(arr[0], "A"))
         col = arr[2];
-    else if (ft_strncmp(arr[0], "L", higher_len(arr[0], "L")) == 0 
-            || ft_strncmp(arr[0], "pl", higher_len(arr[0], "pl")) == 0
-            || ft_strncmp(arr[0], "sp", higher_len(arr[0], "sp")) == 0)
+    else if (strs_equal(arr[0], "L") || strs_equal(arr[0], "pl") || strs_equal(arr[0], "sp"))
         col = arr[3];
-    else if (ft_strncmp(arr[0], "cy", higher_len(arr[0], "cy")) == 0)
+    else if (strs_equal(arr[0], "cy"))
         col = arr[5];
     else
         return (1);

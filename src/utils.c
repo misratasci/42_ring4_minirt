@@ -6,7 +6,7 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 15:00:22 by emgul             #+#    #+#             */
-/*   Updated: 2024/10/03 14:12:02 by emgul            ###   ########.fr       */
+/*   Updated: 2024/10/03 14:32:53 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,4 +114,25 @@ void iter_lines(t_minirt *minirt, char *input_file, int (*f)(char *, void *), vo
     }
     free(line);
     close(fd);
+}
+
+int	strs_equal(char *a, char *b)
+{
+	return (ft_strncmp(a, b, higher_len(a, b)) == 0);
+}
+
+int	create_rgb(int red, int green, int blue)
+{
+	return ((red << 16) | (green << 8) | blue);
+}
+
+int	parse_color(char *str)
+{
+	char **split;
+	int color;
+
+	split = ft_split(str, ',');
+	color = create_rgb(ft_atoi(split[0]), ft_atoi(split[1]), ft_atoi(split[2]));
+	free_array(split);
+	return (color);
 }

@@ -6,7 +6,7 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 15:58:30 by emgul             #+#    #+#             */
-/*   Updated: 2024/10/03 14:12:03 by emgul            ###   ########.fr       */
+/*   Updated: 2024/10/03 14:25:28 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,15 +51,11 @@ static int count_object(char *line, void *ptr)
 void	count_objects(t_input *input, char *input_file)
 {
     iter_lines(NULL, input_file, count_object, input);
+    input->obj_count = input->sphere_count + input->cylinder_count + input->plane_count;
 }
 
 
-int parse_line(char *line, t_input *input)
-{
 
-
-
-}
 
 void fill_scene(t_minirt *minirt, t_input *input)
 {
@@ -85,6 +81,8 @@ void	parse_input(char *input_file, t_minirt *minirt)
     input = init_input();
 	count_objects(input, input_file);
     fill_scene(minirt, input);
-	parse_line(line, input);
+	// parse_line(line, input);
     free(input);
+
+
 }

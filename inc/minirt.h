@@ -6,7 +6,7 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 14:02:00 by emgul             #+#    #+#             */
-/*   Updated: 2024/10/03 14:12:05 by emgul            ###   ########.fr       */
+/*   Updated: 2024/10/03 14:39:27 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,10 @@ void	free_array(char **arr);
 int	count_elements(char **arr);
 void	input_control(char *input_file);
 void iter_lines(t_minirt *minirt, char *input_file, int (*f)(char *, void *), void *ptr);
+int	strs_equal(char *a, char *b);
+int parse_line(char *line, t_scene *scene);
+int	create_rgb(int red, int green, int blue);
+int	parse_color(char *str);
+float ft_atof(const char *str);
+
 #endif
