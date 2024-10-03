@@ -6,7 +6,7 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 14:08:54 by emgul             #+#    #+#             */
-/*   Updated: 2024/10/03 14:46:07 by emgul            ###   ########.fr       */
+/*   Updated: 2024/10/03 15:12:14 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,14 @@
 # define SCENE_H
 
 # include "minirt.h"
+
+enum					e_objects
+{
+	LIGHT,
+	PLANE,
+	SPHERE,
+	CYLINDER,
+};
 
 typedef struct s_camera
 {
@@ -44,12 +52,13 @@ typedef struct s_light
 typedef struct s_sphere
 {
 	t_vector	*origin;
-	int			radius;
+	float		radius;
 	int			color;
 }				t_sphere;
 
 typedef struct s_plane
 {
+	t_vector	*point;
 	t_vector	*normal;
 	int			color;
 
@@ -58,19 +67,20 @@ typedef struct s_plane
 typedef struct s_cylinder
 {
 	t_vector	*origin;
-	int			radius;
-	int			height;
+	t_vector	*axis;
+	float		radius;
+	float		height;
 	int			color;
 }				t_cylinder;
 
 typedef struct s_scene
 {
-	t_camera *camera;
-	t_viewport *viewport;
-	t_amb_light *amb_light;
-	t_light **lights;
-	void **objects;
-	char **obj_tags;
+	t_camera	*camera;
+	t_viewport	*viewport;
+	t_amb_light	*amb_light;
+	t_light		**lights;
+	void		**objects;
+	int			*obj_tags;
 }	t_scene;
 
 #endif

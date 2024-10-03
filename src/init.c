@@ -6,7 +6,7 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 14:33:30 by emgul             #+#    #+#             */
-/*   Updated: 2024/10/03 14:45:13 by emgul            ###   ########.fr       */
+/*   Updated: 2024/10/03 15:06:29 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,21 @@ t_scene *init_scene()
     scene = (t_scene *)ft_calloc(sizeof(t_scene), 1);
     if (!scene)
         return (NULL);
+}
+
+void fill_scene(t_minirt *minirt, t_input *input)
+{
+    t_scene *scene;
+    
+    scene = minirt->scene;
+    scene->amb_light = (t_amb_light *)ft_calloc(sizeof(t_amb_light), 1);
+    scene->camera = (t_camera *)ft_calloc(sizeof(t_camera), 1);
+    scene->viewport = (t_viewport *)ft_calloc(sizeof(t_viewport), 1);
+    scene->objects = (void **)ft_calloc(sizeof(void *), input->obj_count + 1);
+    scene->obj_tags = (int *)ft_calloc(sizeof(int), input->obj_count + 1);
+    if (!scene->amb_light || !scene->camera || !scene->viewport
+             || !scene->objects || !scene->obj_tags)
+        ft_exit("scene_malloc", -1, minirt);
 }
 
 t_minirt *init_minirt()

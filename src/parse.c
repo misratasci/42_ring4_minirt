@@ -6,7 +6,7 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 15:58:30 by emgul             #+#    #+#             */
-/*   Updated: 2024/10/03 14:25:28 by emgul            ###   ########.fr       */
+/*   Updated: 2024/10/03 15:05:22 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,26 +51,7 @@ static int count_object(char *line, void *ptr)
 void	count_objects(t_input *input, char *input_file)
 {
     iter_lines(NULL, input_file, count_object, input);
-    input->obj_count = input->sphere_count + input->cylinder_count + input->plane_count;
-}
-
-
-
-
-void fill_scene(t_minirt *minirt, t_input *input)
-{
-    t_scene *scene;
-    
-    scene = minirt->scene;
-    scene->amb_light = (t_amb_light *)ft_calloc(sizeof(t_amb_light), 1);
-    scene->camera = (t_camera *)ft_calloc(sizeof(t_camera), 1);
-    scene->viewport = (t_viewport *)ft_calloc(sizeof(t_viewport), 1);
-    scene->lights = (t_light **)ft_calloc(sizeof(t_light *), input->light_count);
-    scene->objects = (void **)ft_calloc(sizeof(void *), input->obj_count);
-    scene->obj_tags = (char **)ft_calloc(sizeof(char *), input->obj_count);
-    if (!scene->amb_light || !scene->camera || !scene->viewport
-            || !scene->lights || !scene->objects || !scene->obj_tags)
-        ft_exit("scene_malloc", -1, minirt);
+    input->obj_count = input->light_count + input->sphere_count + input->cylinder_count + input->plane_count;
 }
 
 void	parse_input(char *input_file, t_minirt *minirt)

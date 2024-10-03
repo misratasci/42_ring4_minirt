@@ -6,7 +6,7 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 14:02:00 by emgul             #+#    #+#             */
-/*   Updated: 2024/10/03 14:45:20 by emgul            ###   ########.fr       */
+/*   Updated: 2024/10/03 15:12:15 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,6 @@ typedef struct s_minirt
 t_minirt *init_minirt();
 int ft_exit(char *err, int exit_code, t_minirt *minirt);
 int	handle_keypress(int key, t_minirt *minirt);
-
-//utils
 void	draw(t_minirt *minirt);
 int is_whitespace(char c);
 void	parse_input(char *input_file, t_minirt *minirt);
@@ -75,5 +73,6 @@ int	create_rgb(int red, int green, int blue);
 int	parse_color(char *str);
 float ft_atof(const char *str);
 t_vector *init_vector(char *str);
+void fill_scene(t_minirt *minirt, t_input *input);
 
 #endif
