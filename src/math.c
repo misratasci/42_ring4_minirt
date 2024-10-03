@@ -6,7 +6,7 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 15:27:39 by emgul             #+#    #+#             */
-/*   Updated: 2024/10/03 16:14:05 by emgul            ###   ########.fr       */
+/*   Updated: 2024/10/03 17:51:13 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,80 @@ t_vector	*get_point_on_ray(t_ray ray, float t)
 	v = sum_vector(*ray.origin, *td);
 	free(td);
 	return (v);
+}
+
+t_vector    *intersect_plane(t_ray ray, t_plane plane)
+{
+    float t;
+
+    // ışın denklemi : pr = o + tD
+    // plane denklemi : (pp - pr) . n = 0
+    // (pp - (o + tD)) . n = 0
+    // (pp - o - tD) . n = 0
+    // pp . n - o . n - tD . n = 0
+    // pp . n - o . n = t (D . n)
+    // t = (pp . n - o . n) / (D . n ) 
+    t = (dot_product(*plane.point, *plane.normal) - dot_product(*ray.origin, *plane.normal)) 
+            / dot_product(*ray.direction, *plane.normal);
+    return (get_point_on_ray(ray, t));
+}
+
+float sq(float a)
+{
+    return (a * a);
+}
+
+float   discriminant(float a, float b, float c)
+{
+    return (sq(b) - (4 * a * c));
+}
+
+float   get_min_x(float x1, float x2, t_ray ray)
+{
+    t_vector *v1;
+    t_vector *v2;
+
+    v1 = get_point_on_ray(ray, x1);
+    v2 = get_point_on_ray(ray, x2);
+    if (norm(*v1) < norm(*v2))
+    {
+        free(v1);
+        free(v2);
+        return (x1);
+    }
+    free(v1);
+    free(v2);
+    return (x2);
+}
+
+float   solve_eq(float a, float b, float c, t_ray ray)
+{
+    //x = (-b + sqrt(disc)) / 2a
+    float disc;
+    float   x1;
+    float   x2;
+
+    disc = discriminant(a, b, c);
+    x1 = (-b + sqrtf(disc)) / (2 * a);
+    x2 = (-b - sqrtf(disc)) / (2 * a);
+    return (get_min_x(x1, x2, ray));
+}
+
+t_vector    *intersect_sphere(t_ray ray, t_sphere sphere)
+{
+    float a;
+    float b;
+    float c;
+    float disc;
+
+    a = sq(ray.direction->x) + sq(ray.direction->y) + sq(ray.direction->z);
+    b = 2 * (ray.origin->x - sphere.origin->x) * ray.direction->x
+        + 2 * (ray.origin->y - sphere.origin->y) * ray.direction->y
+        + 2 * (ray.origin->z - sphere.origin->z) * ray.direction->z;
+    c = sq(ray.origin->x - sphere.origin->x) 
+        + sq(ray.origin->x - sphere.origin->x) 
+        + sq(ray.origin->x - sphere.origin->x);
+    if (disc = discriminant(a, b, c) < 0)
+        return (NULL);
+    return (get_point_on_ray(ray, solve_eq(a, b, c, ray)));
 }

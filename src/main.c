@@ -6,7 +6,7 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 14:28:30 by emgul             #+#    #+#             */
-/*   Updated: 2024/10/03 16:21:33 by emgul            ###   ########.fr       */
+/*   Updated: 2024/10/03 17:51:14 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,31 +36,24 @@ int exit_mlx(t_minirt *minirt)
     return (0);
 }
 
-// int main(int ac, char **av)
-// {
-//     t_minirt *minirt;
-
-//     if (ac != 2)
-//     {
-//         ft_putendl_fd("Wrong number of arguments!", 2);
-//         ft_exit(NULL, 0, minirt);
-//     }
-//     input_control(av[1]);
-//     minirt = init_minirt();
-//     if (!minirt)
-//         return (1);
-//     parse_input(av[1], minirt);
-    
-//     draw(minirt);
-//     //mlx_loop_hook(fdf->mlx_ptr, &, fdf);
-// 	mlx_hook(minirt->win, KeyPress, KeyPressMask, handle_keypress, minirt);
-// 	mlx_hook(minirt->win, DestroyNotify, KeyReleaseMask, exit_mlx, minirt);
-// 	mlx_loop(minirt->mlx);
-// }
-int main()
+int main(int ac, char **av)
 {
-    t_ray *ray;
+    t_minirt *minirt;
+
+    if (ac != 2)
+    {
+        ft_putendl_fd("Wrong number of arguments!", 2);
+        ft_exit(NULL, 0, minirt);
+    }
+    input_control(av[1]);
+    minirt = init_minirt();
+    if (!minirt)
+        return (1);
+    parse_input(av[1], minirt);
     
-    ray = init_ray(*init_vector(1.5, 2, 34), *init_vector(45, 2, -1));
-    printf("x: %f, y: %f, z: %f\n", get_point_on_ray(*ray, 3)->x, get_point_on_ray(*ray, 3)->y, get_point_on_ray(*ray, 3)->z);
+    draw(minirt);
+    //mlx_loop_hook(fdf->mlx_ptr, &, fdf);
+	mlx_hook(minirt->win, KeyPress, KeyPressMask, handle_keypress, minirt);
+	mlx_hook(minirt->win, DestroyNotify, KeyReleaseMask, exit_mlx, minirt);
+	mlx_loop(minirt->mlx);
 }
