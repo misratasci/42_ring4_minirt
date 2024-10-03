@@ -6,7 +6,7 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 14:02:00 by emgul             #+#    #+#             */
-/*   Updated: 2024/10/03 12:59:49 by emgul            ###   ########.fr       */
+/*   Updated: 2024/10/03 14:12:05 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct s_input
     int sphere_count;
     int plane_count;
     int cylinder_count;
+	int obj_count;
 }	t_input;
 
 typedef struct s_img
@@ -61,10 +62,11 @@ int	handle_keypress(int key, t_minirt *minirt);
 //utils
 void	draw(t_minirt *minirt);
 int is_whitespace(char c);
-void	parse_input(char *input_file);
+void	parse_input(char *input_file, t_minirt *minirt);
 char	**ft_split_charset(char const *s, char *charset);
 int	higher_len(char *str1, char *str2);
 void	free_array(char **arr);
 int	count_elements(char **arr);
-int line_valid(char *line);
+void	input_control(char *input_file);
+void iter_lines(t_minirt *minirt, char *input_file, int (*f)(char *, void *), void *ptr);
 #endif

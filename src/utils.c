@@ -6,7 +6,7 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 15:00:22 by emgul             #+#    #+#             */
-/*   Updated: 2024/10/03 13:05:22 by emgul            ###   ########.fr       */
+/*   Updated: 2024/10/03 14:12:02 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include "mlx.h"
 #include <stdlib.h>
 #include "libft.h"
+#include <unistd.h>
+#include <fcntl.h>
 
 int is_whitespace(char c)
 {
@@ -87,4 +89,29 @@ int	count_elements(char **arr)
 	while (arr[i])
 		i++;
 	return (i);
+}
+
+void iter_lines(t_minirt *minirt, char *input_file, int (*f)(char *, void *), void *ptr)
+{
+	char *line;
+    int fd;
+    
+    fd = open(input_file, O_RDONLY, 0644);
+    if (fd == -1)
+        ft_exit(input_file, -1, minirt);
+    line = get_next_line(fd);
+    if (!line)
+    {
+        close(fd);
+        ft_exit("Get next line error", -1, minirt);
+    }
+    while (line)
+    {
+        if (f(line, ptr) == -1)
+			ft_exit("iter_lines error", -1, minirt);
+		free(line);
+		line = get_next_line(fd);
+    }
+    free(line);
+    close(fd);
 }

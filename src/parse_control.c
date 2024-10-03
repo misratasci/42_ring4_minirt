@@ -6,7 +6,7 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 12:57:22 by emgul             #+#    #+#             */
-/*   Updated: 2024/10/03 13:05:58 by emgul            ###   ########.fr       */
+/*   Updated: 2024/10/03 14:12:01 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static int arg_count_valid(char **arr)
 	if (ft_strncmp(arr[0], "sp", higher_len(arr[0], "sp")) == 0)
 		return (count_elements(arr) == 4);
 	if (ft_strncmp(arr[0], "cy", higher_len(arr[0], "cy")) == 0)
-		return (count_elements(arr) == 5);
+		return (count_elements(arr) == 6);
 	if (ft_strncmp(arr[0], "pl", higher_len(arr[0], "pl")) == 0)
 		return (count_elements(arr) == 4);
     return (0);
@@ -89,13 +89,13 @@ static int color_valid(char **arr)
     char **split;
     int i;
 
-    if (ft_strncmp(arr[0], "A", higher_len(arr[0], "A")))
+    if (ft_strncmp(arr[0], "A", higher_len(arr[0], "A")) == 0)
         col = arr[2];
-    else if (ft_strncmp(arr[0], "L", higher_len(arr[0], "L")) 
-            || ft_strncmp(arr[0], "pl", higher_len(arr[0], "pl"))
-            || ft_strncmp(arr[0], "sp", higher_len(arr[0], "sp")))
+    else if (ft_strncmp(arr[0], "L", higher_len(arr[0], "L")) == 0 
+            || ft_strncmp(arr[0], "pl", higher_len(arr[0], "pl")) == 0
+            || ft_strncmp(arr[0], "sp", higher_len(arr[0], "sp")) == 0)
         col = arr[3];
-    else if (ft_strncmp(arr[0], "cy", higher_len(arr[0], "cy")))
+    else if (ft_strncmp(arr[0], "cy", higher_len(arr[0], "cy")) == 0)
         col = arr[5];
     else
         return (1);
@@ -111,17 +111,22 @@ static int color_valid(char **arr)
     return (1);
 }
 
-int line_valid(char *line)
+int line_checker(char *line, void *ptr)
 {
     char **split;
 
     split = ft_split_charset(line, " \t");
     if (!split)
-        return (0);
+        return (-1);
 	if (!object_valid(split[0]) || !arg_count_valid(split) || !numbers_valid(split) || !color_valid(split))
     {
-		free_array(split);
-        return (0);
+        free_array(split);
+        return (-1);
     }
-    return (1);
+    return (0);
+}
+
+void	input_control(char *input_file)
+{
+    iter_lines(NULL, input_file, line_checker, NULL);
 }

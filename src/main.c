@@ -6,7 +6,7 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 14:28:30 by emgul             #+#    #+#             */
-/*   Updated: 2024/10/03 12:38:27 by emgul            ###   ########.fr       */
+/*   Updated: 2024/10/03 14:12:04 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@
 int ft_exit(char *err, int exit_code, t_minirt *minirt)
 {
     if (exit_code != 0)
-        perror(err);
+    {
+        ft_putendl_fd("Error", 2);
+        ft_putendl_fd(err, 2);
+    }
     exit(exit_code);
 }
 
@@ -42,10 +45,12 @@ int main(int ac, char **av)
         ft_putendl_fd("Wrong number of arguments!", 2);
         ft_exit(NULL, 0, minirt);
     }
-    parse_input(av[1]);
+    input_control(av[1]);
     minirt = init_minirt();
     if (!minirt)
         return (1);
+    parse_input(av[1], minirt);
+    
     draw(minirt);
     //mlx_loop_hook(fdf->mlx_ptr, &, fdf);
 	mlx_hook(minirt->win, KeyPress, KeyPressMask, handle_keypress, minirt);
