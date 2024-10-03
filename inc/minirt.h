@@ -6,7 +6,7 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 14:02:00 by emgul             #+#    #+#             */
-/*   Updated: 2024/10/02 17:40:53 by emgul            ###   ########.fr       */
+/*   Updated: 2024/10/03 12:59:49 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,9 @@ int	handle_keypress(int key, t_minirt *minirt);
 void	draw(t_minirt *minirt);
 int is_whitespace(char c);
 void	parse_input(char *input_file);
-char	**ft_split_charset(char const *s, char **charset);
+char	**ft_split_charset(char const *s, char *charset);
 int	higher_len(char *str1, char *str2);
+void	free_array(char **arr);
+int	count_elements(char **arr);
+int line_valid(char *line);
 #endif

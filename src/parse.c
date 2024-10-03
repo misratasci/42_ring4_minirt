@@ -6,7 +6,7 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 15:58:30 by emgul             #+#    #+#             */
-/*   Updated: 2024/10/02 17:41:46 by emgul            ###   ########.fr       */
+/*   Updated: 2024/10/03 13:03:00 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,29 +43,6 @@ static void count_object(t_input *input, char *line)
         input->plane_count++;
 }
 
-int	object_valid(char *str)
-{
-	if (ft_strnmcp(str, "L", higher_len(str, "L")) == 0)
-		return (1);
-	if (ft_strnmcp(str, "sp", higher_len(str, "sp")) == 0)
-		return (1);
-	if (ft_strnmcp(str, "cy", higher_len(str, "cy")) == 0)
-		return (1);
-	if (ft_strnmcp(str, "pl", higher_len(str, "pl")) == 0)
-		return (1);
-	return (0);
-}
-
-int line_valid(char *line)
-{
-    char **split;
-
-    split = ft_split_charset(line, " \t");
-	if (!object_valid(split[0]))
-		return (0);
-	// RaRe: to be continued
-}
-
 void	count_objects(t_input *input, char *input_file)
 {
     char *line;
@@ -84,7 +61,7 @@ void	count_objects(t_input *input, char *input_file)
     {
         if (!line_valid(line))
 			ft_exit("Could not parse line", -1, NULL);
-        count_object(input, line);
+        //count_object(input, line);
 		free(line);
 		line = get_next_line(fd);
     }
@@ -95,10 +72,10 @@ void	parse_input(char *input_file)
 {
 	t_input *input;
 	char *line;
-
 	
 	count_objects(input, input_file);
-    input = init_input();
-    printf("L: %i, sp: %i, pl: %i, cy: %i\n", input->light_count, input->sphere_count, input->plane_count, input->cylinder_count);
+    exit(1);
+    //input = init_input();
+    //printf("L: %i, sp: %i, pl: %i, cy: %i\n", input->light_count, input->sphere_count, input->plane_count, input->cylinder_count);
 	//parse_line(line, input);
 }

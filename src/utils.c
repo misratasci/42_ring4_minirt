@@ -6,12 +6,14 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 15:00:22 by emgul             #+#    #+#             */
-/*   Updated: 2024/10/02 17:40:45 by emgul            ###   ########.fr       */
+/*   Updated: 2024/10/03 13:05:22 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 #include "mlx.h"
+#include <stdlib.h>
+#include "libft.h"
 
 int is_whitespace(char c)
 {
@@ -60,4 +62,29 @@ int	higher_len(char *str1, char *str2)
 		return (len1);
 	else
 		return (len2);
+}
+
+void	free_array(char **arr)
+{
+	int	i;
+
+	i = 0;
+	if (!arr)
+		return ;
+	while (arr[i])
+	{
+		free(arr[i]);
+		i++;
+	}
+	if (arr)
+		free(arr);
+}
+
+int	count_elements(char **arr)
+{
+	int i;
+	i = 0;
+	while (arr[i])
+		i++;
+	return (i);
 }

@@ -1,5 +1,5 @@
 
-FILES		= main init utils keypress parse
+FILES		= main init utils keypress parse ft_split_charset parse_control
 
 NAME		= minirt
 CC			= gcc
