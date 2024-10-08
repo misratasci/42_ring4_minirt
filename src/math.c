@@ -6,7 +6,7 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 15:27:39 by emgul             #+#    #+#             */
-/*   Updated: 2024/10/03 17:51:13 by emgul            ###   ########.fr       */
+/*   Updated: 2024/10/08 16:03:05 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,19 @@ t_vector *sum_vector(t_vector v, t_vector u)
     return (vector);
 }
 
+t_vector *subtract_vector(t_vector v, t_vector u)
+{
+    t_vector *vector;
+
+    vector = (t_vector *)ft_calloc(sizeof(t_vector), 1);
+    if (!vector)
+        return (NULL);
+    vector->x = v.x - u.x;
+    vector->y = v.y - u.y;
+    vector->z = v.z - u.z;
+    return (vector);
+}
+
 t_vector	*scale_vector(t_vector v, float s)
 {
 	t_vector *vector;
@@ -70,7 +83,6 @@ t_vector	*get_point_on_ray(t_ray ray, float t)
 {
 	t_vector *v;
 	t_vector *td;
-
 	td = scale_vector(*ray.direction, t);
 	v = sum_vector(*ray.origin, *td);
 	free(td);
@@ -139,7 +151,6 @@ t_vector    *intersect_sphere(t_ray ray, t_sphere sphere)
     float a;
     float b;
     float c;
-    float disc;
 
     a = sq(ray.direction->x) + sq(ray.direction->y) + sq(ray.direction->z);
     b = 2 * (ray.origin->x - sphere.origin->x) * ray.direction->x
@@ -148,7 +159,7 @@ t_vector    *intersect_sphere(t_ray ray, t_sphere sphere)
     c = sq(ray.origin->x - sphere.origin->x) 
         + sq(ray.origin->x - sphere.origin->x) 
         + sq(ray.origin->x - sphere.origin->x);
-    if (disc = discriminant(a, b, c) < 0)
+    if (discriminant(a, b, c) < 0)
         return (NULL);
     return (get_point_on_ray(ray, solve_eq(a, b, c, ray)));
 }

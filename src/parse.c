@@ -6,7 +6,7 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 15:58:30 by emgul             #+#    #+#             */
-/*   Updated: 2024/10/03 15:05:22 by emgul            ###   ########.fr       */
+/*   Updated: 2024/10/08 15:40:53 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,7 @@ void	parse_input(char *input_file, t_minirt *minirt)
     input = init_input();
 	count_objects(input, input_file);
     fill_scene(minirt, input);
-	// parse_line(line, input);
+    iter_lines(minirt, input_file, parse_line, minirt->scene);
     free(input);
-
 
 }

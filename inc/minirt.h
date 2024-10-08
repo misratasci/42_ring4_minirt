@@ -6,7 +6,7 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 14:02:00 by emgul             #+#    #+#             */
-/*   Updated: 2024/10/03 16:19:46 by emgul            ###   ########.fr       */
+/*   Updated: 2024/10/08 16:02:36 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ t_light	*init_light(char **arr);
 t_plane	*init_plane(char **arr);
 t_sphere	*init_sphere(char **arr);
 t_cylinder	*init_cylinder(char **arr);
-t_ray *init_ray(t_vector o, t_vector d);
+t_ray *init_ray(t_vector o, t_vector dir);
 
 
 //math
@@ -96,4 +96,10 @@ t_vector *cross_product(t_vector v, t_vector u);
 t_vector *sum_vector(t_vector v, t_vector u);
 t_vector	*scale_vector(t_vector v, float s);
 t_vector	*get_point_on_ray(t_ray ray, float t);
+t_vector *subtract_vector(t_vector v, t_vector u);
+t_vector    *intersect_sphere(t_ray ray, t_sphere sphere);
+t_vector    *intersect_plane(t_ray ray, t_plane plane);
+t_ray *send_ray_from_cam(int x, int y, t_minirt *minirt);
+
+int	get_color(int x, int y, t_minirt *minirt);
 #endif

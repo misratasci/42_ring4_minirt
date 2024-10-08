@@ -6,7 +6,7 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 14:25:11 by emgul             #+#    #+#             */
-/*   Updated: 2024/10/03 16:20:16 by emgul            ###   ########.fr       */
+/*   Updated: 2024/10/08 16:18:36 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <stdio.h>
+#include <math.h>
 
 t_amb_light	*init_amb_light(char **arr)
 {
@@ -88,6 +89,7 @@ int parse_line(char *line, t_scene *scene)
 		scene->obj_tags[i] = LIGHT;
 	}
 	fill_objects(scene, split);
+	scene->viewport->d = (scene->viewport->width / 2) / tanf((float)scene->camera->fov / 2);
 	free_array(split);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 14:28:30 by emgul             #+#    #+#             */
-/*   Updated: 2024/10/03 17:51:14 by emgul            ###   ########.fr       */
+/*   Updated: 2024/10/08 15:41:25 by emgul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ int main(int ac, char **av)
     if (!minirt)
         return (1);
     parse_input(av[1], minirt);
-    
     draw(minirt);
     //mlx_loop_hook(fdf->mlx_ptr, &, fdf);
 	mlx_hook(minirt->win, KeyPress, KeyPressMask, handle_keypress, minirt);
