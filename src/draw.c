@@ -6,7 +6,7 @@
 /*   By: mitasci <mitasci@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 15:12:19 by emgul             #+#    #+#             */
-/*   Updated: 2024/10/17 18:34:25 by mitasci          ###   ########.fr       */
+/*   Updated: 2024/10/17 19:42:55 by mitasci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ void	*check_sphere_intersection(t_ray *ray, t_minirt *minirt)
 		if (minirt->scene->obj_tags[i] == SPHERE)
 		{
 			intersection = intersect_sphere(*ray, *(t_sphere *)minirt->scene->objects[i]);
-			if (intersection)
-				print_vector("intersection", *intersection);
 			obj = minirt->scene->objects[i];
 		}
 		i++;

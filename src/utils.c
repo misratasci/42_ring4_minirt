@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
+/*   By: mitasci <mitasci@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 15:00:22 by emgul             #+#    #+#             */
-/*   Updated: 2024/10/08 15:59:59 by emgul            ###   ########.fr       */
+/*   Updated: 2024/10/17 19:40:10 by mitasci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	fill_image(int size_x, int size_y, t_img *img, t_minirt *minirt)
 		y = 0;
 		while (y < size_y)
 		{
+			printf("Y: %i\n", y);
 			pix = (x * (img->bits_per_pixel / 8)) + (y * img->line_len);
 			color = get_color(x, y, minirt);
 		    img->data[pix] = color & 0xFF;
@@ -42,8 +43,11 @@ void	fill_image(int size_x, int size_y, t_img *img, t_minirt *minirt)
 			img->data[pix + 2] = (color >> 16) & 0xFF;
 			y++;
 		}
+		printf("X: %i\n", x);
 		x++;
 	}
+		
+		printf("DENEME\n");
 }
 void	draw(t_minirt *minirt)
 {
