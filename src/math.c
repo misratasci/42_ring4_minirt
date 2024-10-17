@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   math.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
+/*   By: mitasci <mitasci@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 15:27:39 by emgul             #+#    #+#             */
-/*   Updated: 2024/10/08 16:03:05 by emgul            ###   ########.fr       */
+/*   Updated: 2024/10/17 18:15:16 by mitasci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_vector *cross_product(t_vector v, t_vector u)
     return (vector);
 }
 
-int	norm(t_vector v)
+float	norm(t_vector v)
 {
 	return (sqrt((v.x * v.x) + (v.y * v.y) + (v.z * v.z)));
 }
@@ -66,24 +66,33 @@ t_vector *subtract_vector(t_vector v, t_vector u)
     return (vector);
 }
 
-t_vector	*scale_vector(t_vector v, float s)
+t_vector	*copy_vector(t_vector v)
 {
-	t_vector *vector;
+    t_vector *vector;
 
     vector = (t_vector *)ft_calloc(sizeof(t_vector), 1);
     if (!vector)
         return (NULL);
-	vector->x = s * v.x;
-	vector->y = s * v.y;
-	vector->z = s * v.z;
-	return (vector);
+	vector->x = v.x;
+    vector->y = v.y;
+    vector->z = v.z;
+    return (vector);
+}
+
+void	scale_vector(t_vector *v, float s)
+{
+	v->x *= s;
+	v->y *= s;
+	v->z *= s;
 }
 
 t_vector	*get_point_on_ray(t_ray ray, float t)
 {
 	t_vector *v;
 	t_vector *td;
-	td = scale_vector(*ray.direction, t);
+	
+	td = copy_vector(*ray.direction);
+	scale_vector(td, t);
 	v = sum_vector(*ray.origin, *td);
 	free(td);
 	return (v);

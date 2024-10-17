@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
+/*   By: mitasci <mitasci@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 15:12:19 by emgul             #+#    #+#             */
-/*   Updated: 2024/10/08 15:53:19 by emgul            ###   ########.fr       */
+/*   Updated: 2024/10/17 18:27:42 by mitasci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	*check_sphere_intersection(t_ray *ray, t_minirt *minirt)
 		if (minirt->scene->obj_tags[i] == SPHERE)
 		{
 			intersection = intersect_sphere(*ray, *(t_sphere *)minirt->scene->objects[i]);
+			printf("helo");
 			obj = minirt->scene->objects[i];
 		}
 		i++;
@@ -44,7 +45,6 @@ int	get_color(int x, int y, t_minirt *minirt)
     t_sphere *sp;
 
 	ray = send_ray_from_cam(x, y, minirt);
-
     sp = (t_sphere *)check_sphere_intersection(ray, minirt);
 	if (sp)
 		return (sp->color);

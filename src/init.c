@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emgul <emgul@student.42istanbul.com.tr>    +#+  +:+       +#+        */
+/*   By: mitasci <mitasci@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 14:33:30 by emgul             #+#    #+#             */
-/*   Updated: 2024/10/08 16:16:49 by emgul            ###   ########.fr       */
+/*   Updated: 2024/10/17 16:39:00 by mitasci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ t_scene *init_scene()
     scene = (t_scene *)ft_calloc(sizeof(t_scene), 1);
     if (!scene)
         return (NULL);
+	return (scene);
 }
 
 void fill_scene(t_minirt *minirt, t_input *input)
