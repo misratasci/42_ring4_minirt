@@ -6,7 +6,7 @@
 /*   By: mitasci <mitasci@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 15:27:39 by emgul             #+#    #+#             */
-/*   Updated: 2024/10/17 18:15:16 by mitasci          ###   ########.fr       */
+/*   Updated: 2024/10/17 19:24:36 by mitasci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include <stdio.h>
 #include <math.h>
 
-int	dot_product(t_vector v, t_vector u)
+float	dot_product(t_vector v, t_vector u)
 {
     return ((v.x * u.x) + (v.y * u.y) + (v.z * u.z));
 }
@@ -165,9 +165,10 @@ t_vector    *intersect_sphere(t_ray ray, t_sphere sphere)
     b = 2 * (ray.origin->x - sphere.origin->x) * ray.direction->x
         + 2 * (ray.origin->y - sphere.origin->y) * ray.direction->y
         + 2 * (ray.origin->z - sphere.origin->z) * ray.direction->z;
-    c = sq(ray.origin->x - sphere.origin->x) 
-        + sq(ray.origin->x - sphere.origin->x) 
-        + sq(ray.origin->x - sphere.origin->x);
+    c = sq(ray.origin->x - sphere.origin->x)
+        + sq(ray.origin->y - sphere.origin->y) 
+        + sq(ray.origin->z - sphere.origin->z)
+		- sq(sphere.radius);
     if (discriminant(a, b, c) < 0)
         return (NULL);
     return (get_point_on_ray(ray, solve_eq(a, b, c, ray)));

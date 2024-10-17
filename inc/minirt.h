@@ -6,7 +6,7 @@
 /*   By: mitasci <mitasci@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 14:02:00 by emgul             #+#    #+#             */
-/*   Updated: 2024/10/17 18:15:21 by mitasci          ###   ########.fr       */
+/*   Updated: 2024/10/17 19:19:48 by mitasci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ t_ray *init_ray(t_vector o, t_vector dir);
 
 
 //math
-int	dot_product(t_vector v, t_vector u);
+float	dot_product(t_vector v, t_vector u);
 t_vector *cross_product(t_vector v, t_vector u);
 t_vector *sum_vector(t_vector v, t_vector u);
 void	scale_vector(t_vector *v, float s);
@@ -104,4 +104,6 @@ float	norm(t_vector v);
 t_vector	*copy_vector(t_vector v);
 
 int	get_color(int x, int y, t_minirt *minirt);
+
+void	print_vector(char *name, t_vector v);
 #endif
